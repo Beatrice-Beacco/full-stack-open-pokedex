@@ -75,5 +75,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit messages
         env:
-          COMMIT_MESSAGES: ${{ github.event.commits.*.message }}
+          COMMIT_MESSAGES: ${{toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
