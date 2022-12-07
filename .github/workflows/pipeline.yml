@@ -64,7 +64,7 @@ jobs:
 
   tag_release:
     if: ${{ github.event_name == 'push' }} ||
-      ${{contains(join(github.event.commits.*.message), '#skip') }}
+      ${{!contains(join(github.event.commits.*.message), '#skip') }}
     needs: [build]
     runs-on: ubuntu-20.04
     steps:
