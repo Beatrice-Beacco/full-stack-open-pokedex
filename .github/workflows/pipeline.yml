@@ -61,3 +61,14 @@ jobs:
           # Set this to true if you don't want to automatically create the Heroku app
           dontautocreate: true
           region: eu
+
+  tag_release:
+    if: ${{ github.event_name == 'push' }}
+    needs: [build]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        DEFAULT_BUMP: 'patch'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
